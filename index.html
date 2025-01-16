@@ -1,395 +1,310 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Home App Ui</title>
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0"
+    />
+    <!-- Include Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
+    <script type="module" src="uiHandler.js"></script>
+  </head>
 
-<head>
-  <title>Home App Ui</title>
-  <link rel="stylesheet" href="styles.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0" />
-</head>
-
-<body>
-
-   <!-- Cursor -->
-
-  <div class="cursor-dot" data-cursor-dot></div>
-  <div class="cursor-outline" data-cursor-outline></div>
+  <body>
+    <!-- Cursor -->
+    <div class="cursor-dot" data-cursor-dot></div>
+    <div class="cursor-outline" data-cursor-outline></div>
 
     <!-- Side navbar  -->
+    <aside class="sidebar">
+      <div class="logo">
+        <h2>Smart Home</h2>
+      </div>
+      <ul class="links">
+        <h4>Main Menu</h4>
+        <li>
+          <span class="material-symbols-outlined">dashboard</span>
+          <a href="#">Dashboard</a>
+        </li>
 
-  <aside class="sidebar">
-    <div class="logo">
-      <h2>Smart Home</h2>
-    </div>
-    <ul class="links">
-      <h4>Main Menu</h4>
-      <li>
-        <span class="material-symbols-outlined">dashboard</span>
-        <a href="#">Dashboard</a>
-      </li>
-     
-      <h4>Account</h4>
-      <li>
-        <span class="material-symbols-outlined">bar_chart</span>
-        <a href="#">Overview</a>
-      </li>
-      <li>
-        <span class="material-symbols-outlined">mail</span>
-        <a href="#">Message</a>
-      </li>
-      <li>
-        <span class="material-symbols-outlined">settings</span>
-        <a href="#">Settings</a>
-      </li>
-      
-      <li class="logout-link">
-        <span class="material-symbols-outlined">logout</span>
-        <a href="#">Logout</a>
-      </li>
-    </ul>
-  </aside>
+        <h4>Account</h4>
+        <li>
+          <span class="material-symbols-outlined">bar_chart</span>
+          <a href="#">Overview</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">mail</span>
+          <a href="#">Message</a>
+        </li>
+        <li>
+          <span class="material-symbols-outlined">settings</span>
+          <a href="#">Settings</a>
+        </li>
 
-      <!-- Main Container box -->
+        <li class="logout-link">
+          <span class="material-symbols-outlined">logout</span>
+          <a href="#">Logout</a>
+        </li>
+      </ul>
+    </aside>
 
-  <div class="container">
+    <!-- Main Container box -->
+
+    <div class="container">
       <!-- Screen 1 -->
-
-    <div class="screen-1">
-      <div class="ui--statusbar">
-        <span class="current-time">7:31</span>
-        <p class="Bstatus">
-          <i class="ri-plug-line"></i>
-      </p>
-        <span class="Bpercentage">81%</span>
-      </div>
-      <div class="ui--screen-header">
-        <span class="ui--screen-title">Home</span>
-      </div>
-      <div class="ui--screen-section">
-        <div class="ui--section-title">
-          <span>Sensors</span>
-          <div class="ui--dropdown-menu">
-            <button class="dropdown-toggle">&hellip;</button>
-            <ul class="dropdown-item right">
-              <li>Refresh</li>
-              <li>Manage sensors</li>
-            </ul>
-          </div>
+      <div class="screen-1">
+        <div class="ui--statusbar">
+          <span class="current-time">7:31</span>
+          <p class="Bstatus">
+            <i class="ri-plug-line"></i>
+          </p>
+          <span class="Bpercentage">81%</span>
         </div>
-        <div class="ui--horizontal-scroll">
-          <div class="ui--card ui--card-square">
-            <span class="ui-card--title">Temperature</span>
-            <div class="row mt-4">
-              <div class="col-md-6">
-                <div class="card">
-                  <div class="card-body text-center">
-                    <h1 class="text-gradient text-primary">
-                      <span id="status1" countto="21">21</span>
-                      <span class="text-lg ms-n2">°C</span>
-                    </h1>
-                    <div id="terminal-container" style="width: 100%; height: 150px; overflow: auto; border: 1px solid black; padding: 5px;"></div>
-                    <script>
-                      const terminalContainer = document.getElementById('terminal-container');
-                      const terminal = new Terminal({
-                        cursorBlink: true,
-                        fontSize: 12,
-                      });
-                      terminal.open(terminalContainer);
-                      terminal.write('\r\n\r\n');
-                    </script>
-                  </div>
-                </div>
-              </div>
-              <button id="connect" class="btn btn-primary mt-4">Connect to Arduino</button>
-              <label class="switch mt-4">
-                <span class="slider round"></span>
-              </label>
-            </div>
-            <script>
-              const connectButton = document.getElementById('connect');
-              const statusElement = document.getElementById('status1');
-              let port;
-              let writer;
-              let lastState = false;
+        <div class="ui--screen-header">
+          <span class="ui--screen-title">Distance over time</span>
+        </div>
 
-              connectButton.addEventListener('click', async () => {
-                try {
-                  console.log("Requesting port...");
-                  port = await navigator.serial.requestPort();
-                  console.log("Port selected:", port);
-
-                  await port.open({ baudRate: 9600 });
-                  console.log("Port opened.");
-
-                  const textDecoder = new TextDecoderStream();
-                  const readableStreamClosed = port.readable.pipeTo(textDecoder.writable);
-                  const reader = textDecoder.readable.getReader();
-                  
-                  const textEncoder = new TextEncoderStream();
-                  const writableStreamClosed = textEncoder.readable.pipeTo(port.writable);
-                  writer = textEncoder.writable.getWriter();
-
-                  console.log("Waiting for data...");
-
-                  readerLoop(reader);
-                } catch (error) {
-                  console.error("Error:", error);
-                  alert("Connection failed. Check your device or browser.");
-                }
-              });
-
-              /**
-               * Reads data from the serial port and updates the status element.
-               * @param {ReadableStreamDefaultReader} reader The reader to read from.
-               */
-              async function readerLoop(reader) {
-                while (true) {
-                  const { value, done } = await reader.read();
-                  if (done) {
-                    console.log("Reader closed.");
-                    reader.releaseLock();
-                    break;
-                  }
-
-                  const trimmedValue = value.trim();
-                  const distance = trimmedValue.match(/Distance: (\d+)/);
-                  if (distance) {
-                    const distanceValue = parseInt(distance[1], 10);
-                    console.log("Distance:", distanceValue);
-                    statusElement.textContent = distanceValue.toString();
-                    terminal.write(`${distanceValue}\r\n`);
-                  }
-                  statusElement.textContent = value;
-                  await reader.cancel();
-                }
-              }
-
-              document.getElementById("living-room-lights").addEventListener("change", async (e) => {
-                const currentState = e.target.checked;
-                if (writer && currentState !== lastState) {
-                  lastState = currentState;
-                  if (currentState) {
-                    await writer.write("LED_ON\n");
-                    console.log("LED ON command sent.");
-                    document.getElementById("living-room-lights-status").textContent = "1 on, 2 off";
-                  } else {
-                    await writer.write("LED_OFF\n");
-                    console.log("LED OFF command sent.");
-                    document.getElementById("living-room-lights-status").textContent = "3 off";
-                  }
-                }
-              });
-            </script>
-          </div>
-          <div class="ui--card ui--card-square">
-            <span class="ui-card--title">Humidity</span>
-            <span class="ui-card--value2">45</span>
-          </div>
-          <div class="ui--card ui--card-square">
-            <span class="ui-card--title">Energy</span>
-            <span class="ui-card--value">18<span class="suffix">kWh</span></span>
-          </div>
+        <!-- Graph Section for Distance Data Over Time -->
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 20px;
+          "
+        >
+          <canvas id="distance-chart" width="80%" height="75%"></canvas>
+          <button id="connect-button" class="btn" style="margin-top: 15px;">Connect to device</button>
         </div>
       </div>
-      <div class="ui--screen-section">
-        <div class="ui--section-title">
-          <span>Devices</span>
-          <div class="ui--dropdown-menu">
-            <button class="dropdown-toggle">&hellip;</button>
-            <ul class="dropdown-item right">
-              <li>Refresh</li>
-              <li>Manage devices</li>
-            </ul>
-          </div>
-        </div>
-        <div class="ui--stack">
-          <div class="ui--card">
-            <div class="ui-card--icon icon-lightbulb"></div>
-            <span class="ui-card--subtitle" id="living-room-lights-status">3 off</span>
-            <div class="ui--toggle">
-              <input type="checkbox" id="living-room-lights" />
-              <label for="living-room-lights">Toggle</label>
-            </div>
-            <script>
-              document.getElementById("living-room-lights").addEventListener("change", (e) => {
-                const status = e.target.checked ? "1 on, 2 off" : "3 off";
-                document.getElementById("living-room-lights-status").textContent = status;
-              });
-            </script>
-          </div>
-          <div class="ui--card">
-            <div class="ui-card--icon icon-speaker"></div>
-            <div>
-              <span class="ui-card--title">Kitchen speaker</span>
-              <span class="ui-card--subtitle">Now playing: Sweet Caroline</span>
-            </div>
-            <div class="ui--toggle">
-              <input type="checkbox" id="kitchen-speaker" />
-              <label for="kitchen-speaker">Toggle</label>
-            </div>
-          </div>
-          <div class="ui--card">
-            <div class="ui-card--icon icon-lock"></div>
-            <div>
-              <span class="ui-card--title">Front door</span>
-              <span class="ui-card--subtitle">Battery at 96%</span>
-            </div>
-            <div class="ui--toggle">
-              <input type="checkbox" id="front-door" />
-              <label for="front-door">Toggle</label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
       <!-- Screen 2 -->
 
-    <div class="screen-2">
-      <div class="ui--statusbar">
-        <span class="current-time">7:31</span>
-        <span class="Bpercentage">81%</span>
-      </div>
-      <div class="ui--screen-header">
-        <span class="ui--screen-title">Temperature</span>
-      </div>
-      <div class="ui--screen-section">
-        <div class="ui--dial-wrapper">
-          <div class="ui-dial--outer">
-            <div id="range--selector" style="left: 52.5%; top: 8px; transition: all 0.3s ease-out;"></div>
-            <div id="range"></div>
-          </div>
-          <div class="ui--dial-inner" style="transform: translateX(-50%) translateY(-50%); top: 50%; left: 50%;">
-            <span class="ui--dial-status">&nbsp;&nbsp;&nbsp;Heating to</span>
-            <span class="ui--dial-value3" id="dial-value3">18<span class="suffix">°C</span></span>
-          </div>
+      <div class="screen-2">
+        <div class="ui--statusbar">
+          <span class="current-time">7:31</span>
+          <span class="Bpercentage">81%</span>
         </div>
-        <style>
-          #range--selector {
-            transition: transform 0.3s ease-out;
-          }
-        </style>
-        <script>
-          const dialValue3 = document.getElementById("dial-value3");
-          const rangeSelector = document.getElementById("range--selector");
-          function updateKnobPosition() {
-            const value = parseInt(dialValue3.textContent);
-            const angle = ((value - 2) / 38) * 360; // Adjusts angle based on temperature
-            rangeSelector.style.transform = `rotate(${angle}deg)`;
-          }
-          dialValue3.addEventListener("DOMSubtreeModified", updateKnobPosition);
-          updateKnobPosition(); // Initial position
-        </script>
-      </div>
-      <div class="ui--screen-section">
-        <div class="ui--stack-horizontal" style="margin-top: 36px">
-          <div class="ui--detail">
-            <span class="ui--detail-title">Outdoors</span>
-            <span class="ui--detail-value1">18<span class="suffix">°C</span></span>
-          </div>
-          <div class="vertical-separator"></div>
-          <div class="ui--detail">
-            <span class="ui--detail-title">Indoors</span>
-            <span class="ui--detail-value2">1<span class="suffix">°C</span></spa>
-          </div>
+        <div class="ui--screen-header">
+          <span class="ui--screen-title">Light</span>
         </div>
-      </div>
-      <div class="ui--screen-section">
-        <div class="ui--stack-horizontal" style="margin-top: 36px">
-          <div class="ui--card ui--card-square-sm">
-            <div class="ui--button">
-              <input type="checkbox" id="eco-mode" checked>
-              <label for="eco-mode" class="icon-eco">Eco mode</label>
-            </div>
-          </div>
-          <div class="ui--card ui--card-square-sm">
-            <div class="ui--button">
-              <input type="checkbox" id="air-flow">
-              <label for="air-flow" class="icon-air">Air flow</label>
-            </div>
-          </div>
-          <div class="ui--card ui--card-square-sm">
-            <div class="ui--button">
-              <input type="checkbox" id="fan-speed">
-              <label for="fan-speed" class="icon-fan">Fan speed</label>
-            </div>
-          </div>
-          <div class="ui--card ui--card-square-sm">
-            <div class="ui--button">
-              <input type="checkbox" id="humidity">
-              <label for="humidity" class="icon-water">Humidity</label>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Screen 3 -->
-
-    <div class="screen-3">
-      <div class="ui--statusbar">
-        <span class="current-time">7:31</span>
-        <span class="Bpercentage">81%</span>
-      </div>
-      <div class="ui--screen-header">
-        <span class="ui--screen-title">Solar heating</span>
-        <div class="ui--dropdown-menu">
-          <button class="dropdown-toggle arrow">Today</button>
-          <ul class="dropdown-item">
-            <li>Yesterday</li>
-            <li>This week</li>
-            <li>Last week</li>
-            <li>This month</li>
-          </ul>
-        </div>
-      </div>
-      <div class="ui--screen-section">
         <div class="ui--screen-section">
-          <div class="ui--stack-horizontal">
+          <div class="ui--dial-wrapper">
+            <div class="ui-dial--outer">
+              <!-- LED Bulb Icon -->
+              <div id="led-bulb" class="led-bulb" style="cursor: pointer"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ui--screen-section">
+          <div class="ui--stack-horizontal" style="margin-top: 36px">
             <div class="ui--detail">
-              <span class="ui--detail-title">Current load</span>
-              <span class="ui--detail-value">2<span class="suffix">kW</span></span>
+              <span class="ui--detail-title">Actual</span>
+              <span class="ui--detail-value1" id="ui--detail-value1">15</span>
+              </span>
             </div>
             <div class="vertical-separator"></div>
             <div class="ui--detail">
-              <span class="ui--detail-title">Consumption</span>
-              <span class="ui--detail-value">27.4<span class="suffix">kWh</span></spa>
+              <span class="ui--detail-title">Expected</span>
+              <span class="ui--detail-value2" id="ui--detail-value2">0</span>
+              </span>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="ui--screen-section">
+          <div class="ui--stack-horizontal" style="margin-top: 36px">
+            <div class="ui--card ui--card-square-sm">
+              <div class="ui--button">
+                <input type="checkbox" id="eco-mode" checked />
+                <label for="eco-mode" class="icon-eco">Eco mode</label>
+              </div>
+            </div>
+            <div class="ui--card ui--card-square-sm">
+              <div class="ui--button">
+                <input type="checkbox" id="air-flow" />
+                <label for="air-flow" class="icon-air">Air flow</label>
+              </div>
+            </div>
+            <div class="ui--card ui--card-square-sm">
+              <div class="ui--button">
+                <input type="checkbox" id="fan-speed" />
+                <label for="fan-speed" class="icon-fan">Fan speed</label>
+              </div>
+            </div>
+            <div class="ui--card ui--card-square-sm">
+              <div class="ui--button">
+                <input type="checkbox" id="humidity" />
+                <label for="humidity" class="icon-water">Humidity</label>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+
+      <style>
+        /* Basic Glass Bulb styles */
+        .led-bulb {
+          width: 200px; /* Perfectly round */
+          height: 200px; /* Perfectly round */
+          background-color: rgba(255, 255, 255, 0.2); /* Transparent, light glass color */
+          border-radius: 50%; /* Round shape */
+          position: relative;
+          box-shadow: 0 0 30px rgba(0, 0, 0, 0.3), 0 0 60px rgba(0, 0, 0, 0.1); /* Subtle shadow for glass effect */
+          transition: all 0.3s ease-in-out;
+          cursor: pointer;
+          border: 2px solid rgba(255, 255, 255, 0.1); /* Light border for the glass effect */
+          background-image: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.4)); /* Glassy reflection */
+        }
+      
+        /* LED Bulb 'on' state styles */
+        .led-bulb.on {
+          background-color: rgba(255, 235, 59, 0.6); /* Slightly transparent yellowish light color */
+          box-shadow: 0 0 30px rgba(255, 235, 59, 0.8), 0 0 60px rgba(255, 235, 59, 0.6); /* Bright glowing effect */
+          background-image: linear-gradient(135deg, rgba(255, 235, 59, 0.6), rgba(255, 235, 59, 0.9)); /* Reflective light */
+        }
+      
+        /* Detailed Screw Base (located at the bottom of the bulb) */
+        .led-bulb::after {
+          content: "";
+          position: absolute;
+          top: -30px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 50px; /* Increase the width of the base */
+          height: 30px; /* Adjust the height */
+          background-color: #666; /* Metal-like color */
+          border-radius: 15px 15px 0 0; /* Round top corners */
+          box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.4); /* Inner shadow for depth */
+        }
+      
+        /* Screw threads for detailed effect */
+        .led-bulb::before {
+          content: "";
+          position: absolute;
+          top: 0px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 70px; /* Larger screw diameter */
+          height: 6px; /* Thicker thread */
+          background-color: #444; /* Darker metallic color for threads */
+          border-radius: 3px; /* Rounded edges for threads */
+          box-shadow: inset 0 -3px 3px rgba(0, 0, 0, 0.2);
+        }
+      
+        /* The 'on' animation for a glowing effect */
+        .led-bulb.on {
+          animation: glow 1s ease-in-out infinite alternate;
+        }
+      
+        @keyframes glow {
+          0% {
+            box-shadow: 0 0 30px rgba(255, 235, 59, 0.8), 0 0 60px rgba(255, 235, 59, 0.6);
+          }
+          100% {
+            box-shadow: 0 0 70px rgba(255, 235, 59, 0.9), 0 0 100px rgba(255, 235, 59, 0.9);
+          }
+        }
+      
+      </style>
+        
+      
+
+      <!-- Screen 3 -->
+
+      <div class="screen-3">
+        <div class="ui--statusbar">
+          <span class="current-time">7:31</span>
+          <span class="Bpercentage">81%</span>
+        </div>
+        <div class="ui--screen-header">
+          <span class="ui--screen-title">Potentiometer</span>
+        </div>
+
+        <!-- Knob Dial for values between 1 and 1024 -->
+        <div class="ui--screen-section">
+          <div class="ui--dial-wrapper">
+            <div class="ui-dial--outer">
+              <div id="outer-ring" class="outer-ring">
+              <div
+                id="range--selector"
+                style="
+                left: 0%; top: 100%;
+                transition: all 0.3s ease-out"
+              ></div>
+            </div>
+              <div id="range"></div>
+            </div>
+            <div
+              class="ui--dial-inner"
+              style="
+                transform: translateX(-50%) translateY(-50%);
+                top: 50%;
+                left: 50%;
+              "
+            >
+              <span class="ui--dial-status">Value</span>
+              <span class="ui--dial-value3" id="dial-value3"
+                >0<span class="suffix">%</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Sections -->
+        <div class="ui--screen-section">
+          <div class="ui--stack-horizontal" style="margin-top: 36px">
+            <div class="ui--detail">
+              <!-- <span class="ui--detail-title">Outdoors</span>
+              <span class="ui--detail-value1"
+                >18<span class="suffix">°C</span></span
+              > -->
+            </div>
+            <div class="vertical-separator"></div>
+            <div class="ui--detail">
+              <!-- <span class="ui--detail-title">Indoors</span>
+              <span class="ui--detail-value2"
+                >1<span class="suffix">°C</span></span
+              > -->
             </div>
           </div>
         </div>
         <div class="ui--screen-section">
-          <div class="ui--graph"></div>
-          <div class="ui-graph--marker"></div>
-        </div>
-        <div class="ui--screen-section">
-          <div class="ui--horizontal-scroll">
-            <div class="ui--card ui--card-square">
-              <div class="ui--detail">
-                <span class="ui--detail-title">Capacity</span>
-                <span class="ui--detail-value">12<span class="suffix">kW</span></spa>
-              </div>
-              <div class="ui--chart-pie" style="--p:85">
-                <span>85%</span>
+          <div class="ui--stack-horizontal" style="margin-top: 36px">
+            <div class="ui--card ui--card-square-sm">
+              <div class="ui--button">
+                <input type="checkbox" id="eco-mode" checked />
+                <label for="eco-mode" class="icon-eco">Eco mode</label>
               </div>
             </div>
-            <div class="ui--card ui--card-square">
-              <div class="ui--detail">
-                <span class="ui--detail-title">Charge rate</span>
-                <span class="ui--detail-value">2<span class="suffix">kW/h</span></spa>
-              </div>
-              <div class="ui--chart-pie" style="--p:65">
-                <span>4h<br />to full</span>
+            <div class="ui--card ui--card-square-sm">
+              <div class="ui--button">
+                <input type="checkbox" id="air-flow" />
+                <label for="air-flow" class="icon-air">Air flow</label>
               </div>
             </div>
-            <div class="ui--card ui--card-square">
-              <div class="ui--detail">
-                <span class="ui--detail-title">Efficiency</span>
-                <span class="ui--detail-value">95<span class="suffix">%</span></spa>
+            <div class="ui--card ui--card-square-sm">
+              <div class="ui--button">
+                <input type="checkbox" id="fan-speed" />
+                <label for="fan-speed" class="icon-fan">Fan speed</label>
               </div>
-              <div class="ui--chart-pie" style="--p:95">
-                <span>95%</span>
+            </div>
+            <div class="ui--card ui--card-square-sm">
+              <div class="ui--button">
+                <input type="checkbox" id="humidity" />
+                <label for="humidity" class="icon-water">Humidity</label>
               </div>
             </div>
           </div>
@@ -397,7 +312,7 @@
       </div>
     </div>
 
-        <!-- Chatbot -->
+           <!-- Chatbot -->
     
    <button class="chatbot-toggler">
     <span class="material-symbols-rounded">mode_comment</span>
@@ -420,9 +335,6 @@
     </div>
     
   </div>
- 
 
-</body>
-<script src="script.js"></script>
-
+  </body>
 </html>
