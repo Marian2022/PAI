@@ -167,7 +167,7 @@ function updateKnobPosition(value) {
 
   // Update the displayed value in the dial
   const dialValueElement = document.getElementById("dial-value3");
-  dialValueElement.textContent = value;
+  dialValueElement.textContent = Math.floor(5 + (value / 1024 * 35));
 }
 
 function processReceivedData(value) {
@@ -260,4 +260,5 @@ async function closeConnection() {
   }
 }
 
-export { openConnection, sendCommand, closeConnection };
+export { closeConnection, openConnection, sendCommand };
+
