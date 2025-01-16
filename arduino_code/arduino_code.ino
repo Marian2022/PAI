@@ -23,7 +23,6 @@ void setup() {
 void loop() {
   int potentiometerValue = analogRead(A0);
 
-  digitalWrite(ledPin, HIGH); // Turn the LED on
   // Clears the trigPin
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
